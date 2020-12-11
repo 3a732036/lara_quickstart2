@@ -4,12 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use Illuminate\Http\Request;
+use App\Repositories\TaskRepository;
 
 class TaskController extends Controller
 {
-    public function __construct()
+    /**
+     * 任務資源庫的實例。
+     *
+     * @var TaskRepository
+     */
+    protected $tasks;
+
+    public function __construct(TaskRepository $tasks)
     {
         $this->middleware('auth');
+
+        $this->tasks = $tasks;
     }
 
     public function index(Request $request)
@@ -34,4 +44,6 @@ class TaskController extends Controller
         return redirect('/tasks');
 
     }
+
+
 }
