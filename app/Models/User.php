@@ -58,4 +58,14 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    // 其他的 Eloquent 屬性...
+
+    /**
+     * 取得該使用者的所有任務。
+     */
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
 }
